@@ -26,7 +26,7 @@ class InputForm extends Component {
     event.preventDefault();
     const { name } = this.state;
     const { contacts, onSubmit } = this.props;
-    if (contacts.find(item => item.name.toLowerCase() === name.toLowerCase())) {
+    if (contacts.some(item => item.name.toLowerCase() === name.toLowerCase())) {
       alert(`${name} Already exists`);
       this.reset();
       return;

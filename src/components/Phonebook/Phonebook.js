@@ -1,23 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import PhonebookItem from './PhonebookItem';
+
 import s from './Phonebook.module.css';
 
 const Phonebook = ({ contacts, onDelete }) => {
   return (
     <ul className={s.list}>
-      {contacts.map(({ name, number, id }) => (
-        name && (<li className={s.item} key={id}>
-          <span>{name} : {number}</span>
-          <button type="button" className={s.close} onClick={() => onDelete(id)}>+</button>
-        </li>)
-
-      ))}
+      {contacts.map(contact =>
+        <PhonebookItem {...contact} key={contact.id} onDelete={onDelete} />
+      )}
     </ul>
   )
 }
 Phonebook.propTypes = {
-  contacts: PropTypes.array.isRequired,
+  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
   onDelete: PropTypes.func.isRequired
 }
 
