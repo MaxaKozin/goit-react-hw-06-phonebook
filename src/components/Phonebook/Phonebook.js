@@ -1,22 +1,26 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import PhonebookItem from './PhonebookItem';
+import PhonebookItem from "./PhonebookItem";
 
-import s from './Phonebook.module.css';
+import s from "./Phonebook.module.css";
 
 const Phonebook = ({ contacts, onDelete }) => {
   return (
     <ul className={s.list}>
-      {contacts.map(contact =>
-        <PhonebookItem {...contact} key={contact.id} onDelete={onDelete} />
-      )}
+      {contacts.map((contact) => (
+        <li className={s.item} key={contact.id}>
+          <PhonebookItem {...contact} onDelete={onDelete} />
+        </li>
+      ))}
     </ul>
-  )
-}
+  );
+};
 Phonebook.propTypes = {
-  contacts: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onDelete: PropTypes.func.isRequired
-}
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.string.isRequired })
+  ),
+  onDelete: PropTypes.func.isRequired,
+};
 
 export default Phonebook;
