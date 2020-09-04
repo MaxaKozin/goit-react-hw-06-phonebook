@@ -28,19 +28,15 @@ class InputForm extends Component {
     event.preventDefault();
     const { name } = this.state;
     const { contacts, onSubmit } = this.props;
-    if (
-      contacts.some((item) => item.name.toLowerCase() === name.toLowerCase())
-    ) {
+    const sameContact = contacts.some(
+      (item) => item.name.toLowerCase() === name.toLowerCase()
+    );
+    if (sameContact) {
       alert(`${name} Already exists`);
       this.reset();
       return;
     }
     onSubmit(this.state);
-    this.reset();
-  };
-
-  reset = () => {
-    this.setState({ name: "", number: "" });
   };
 
   render() {
