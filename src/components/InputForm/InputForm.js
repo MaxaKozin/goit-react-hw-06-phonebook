@@ -37,6 +37,14 @@ class InputForm extends Component {
       return;
     }
     onSubmit(this.state);
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({
+      name: "",
+      number: "",
+    });
   };
 
   render() {
